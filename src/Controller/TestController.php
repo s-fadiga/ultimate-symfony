@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Taxes\Detector;
 use App\Taxes\Calculator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,11 +15,13 @@ class TestController {
  
 
     /**
-     * @Route("/home/{age<\d+>?0}", name="test",
+     * @Route("/homme/{age<\d+>?0}", name="test",
      * methods={"GET", "POST"})
      */
-    public function home(Request $request, $age, Calculator $calculator) {
+    public function homme(Request $request, $age, Calculator $calculator, Detector $detector) {
 
+        dump($detector->detect(11));
+        dump($detector->detect(101));
         $tva = $calculator->calcul(200);
 
         dd($tva);
