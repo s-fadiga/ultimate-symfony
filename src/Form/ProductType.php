@@ -22,13 +22,15 @@ class ProductType extends AbstractType
                     'label' => 'Nom du produit',
                     'attr' => [
                         'placeholder' => 'Tapez le nom du produit'
-                    ]
+                    ],
+                    'required' => false
                 ])
                 ->add('shortDescription', TextareaType::class, [
                     'label' => 'Description courte',
                     'attr' => [
                         'Placeholder' => 'Entrez une description courte et précise'
-                    ]
+                    ],
+                    'required' => false
                 ])
                 ->add('price', MoneyType::class, [
                     'label' => 'Prix du produit',
@@ -36,10 +38,12 @@ class ProductType extends AbstractType
                         'placeholder' => 'Tapez le prix du produit en €'
                     ],
                     'divisor' => 100,
+                    'required' => false
                 ])
                 ->add('mainPicture', UrlType::class, [
                     'label' => 'Image du produit',
-                    'attr' => [ 'placeholder' => 'Tapez une url d\'image' ]
+                    'attr' => [ 'placeholder' => 'Tapez une url d\'image' ],
+                    'required' => false
                 ])
                 ->add('category', EntityType::class, [
 
