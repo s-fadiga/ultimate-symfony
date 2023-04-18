@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SecurityController!
+{% endblock %}
+
+{% block body %}
+	<h1>Connexion</h1>
+
+	{% if error %}
+		<div class="alert alert-danger">
+			Vos identifiants ne sont pas valides
+		</div>
+	{% endif %}
+
+	{{ form_start(formview) }}
+
+	{{ form_widget(formview) }}
+
+	<button type="submit" class="btn btn-success">Se connecter</button>
+
+	{{ form_end(formview) }}
+
+{% endblock %}

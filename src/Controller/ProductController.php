@@ -20,7 +20,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class ProductController extends AbstractController
 {
     /**
-     * @Route("/{slug}", name="product_category")
+     * @Route("category/{slug}", name="product_category")
      */
     public function category($slug, CategoryRepository $cateRepository)
     {
@@ -38,7 +38,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/{category_slug}/{slug}", name="product_show")
+     * @Route("/{show_one_category}/{slug}", name="product_show")
      */
     public function show($slug, ProductRepository $productRepository) {
         $product = $productRepository->findOneBy([
