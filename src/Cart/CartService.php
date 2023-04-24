@@ -16,6 +16,14 @@ class CartService {
         $this->productRepository = $productRepository;
     }
 
+    protected function saveCart(array $cart) {
+        $this->session->set('cart', $cart);
+    }
+
+    public function empty() {
+        $this->saveCart([]);
+    }
+
     // incrementer un produit
     public function add(int $id) {
          // Retrouver le panier s'il existe sinon prendre 1 array vide
@@ -29,7 +37,7 @@ class CartService {
          $cart[$id]++;
          
          // mise a jour du panier
-         $this->session->set('cart', $cart);
+         $this->saveCart($cart);
     }
 
     // decrementer un produit
@@ -50,7 +58,7 @@ class CartService {
         // soit le produit est > 1 on le décrémente
         $cart[$id]--;
         
-        $this->session->set('cart', $cart);
+        $this->saveCart($cart);
     }
 
     // supprimer un produit du panier
@@ -60,7 +68,7 @@ class CartService {
 
         unset($cart[$id]);
 
-        $this->session->set('cart', $cart);
+        $this->saveCart($cart);
     }
 
 
@@ -81,6 +89,9 @@ class CartService {
         return $total;
     }
     
+    /**
+     * @return CartItem[]
+     */
     public function getDetailCartItem(): array
     {
         $detailCart = [];
