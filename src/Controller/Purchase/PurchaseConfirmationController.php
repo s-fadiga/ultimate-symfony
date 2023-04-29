@@ -85,11 +85,9 @@ class PurchaseConfirmationController extends AbstractController {
 
         // 7eme étape enfin enregistrer la commande
         $this->em->flush();
-
-        $this->cartService->empty();
-
-        $this->addFlash('success', 'Merciii ! Votre commande a été effectuée');
         
-        return $this->redirectToRoute('purchase_index');
+        return $this->redirectToRoute('purchase_payment_form', [
+            'id' => $purchase->getId()
+        ]);
     }
 }

@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Page de paiement !
+{% endblock %}
+
+{% block body %}
+	<h1>Finalisation de la commande</h1>
+
+	<form id="payment-form">
+		<div
+			id="link-authentication-element"><!--Stripe.js injects the Link Authentication Element-->
+		</div>
+		<div
+			id="payment-element"><!--Stripe.js injects the Payment Element-->
+		</div>
+		<button id="submit" class="btn btn-success">
+			<div class="spinner hidden" id="spinner"></div>
+			<span id="button-text">Payer maintenant</span>
+		</button>
+		<div id="payment-message" class="hidden"></div>
+	</form>
+{% endblock %}
+
+{% block javascripts %}
+
+	<script src="https://js.stripe.com/v3/"></script>
+
+	<script>
+		// On récupère la clé secrète passé par le controller à TWIG
+const clientSecret = "{{ clientSecret }}";
+
+const stripePublicKey = '{{ stripePublicKey }}';
+
+const redirectAfterSuccessUrl = "{{ url('purchase_payment_success', {'id': purchase.id}) }}";
+	</script>
+
+	<script src="/js/payment.js"></script>
+
+	{{ parent() }}
+{% endblock %}
