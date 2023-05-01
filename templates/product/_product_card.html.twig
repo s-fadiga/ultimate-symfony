@@ -2,8 +2,7 @@
 	<a href="{{ path('product_show', {'show_one_product': p.category.slug, 'slug': p.slug }) }}"><img src="{{p.mainPicture}}" class="img-fluid" alt="image produit"></a>
 	<div class="card-body">
 		<h4 class="card-title">{{p.name}}
-			({{p.price / 100}}
-			&euro;)</h4>
+			({{p.price | amount}})</h4>
 
 		<span class="badge bg-info">{{p.category.name}}</span>
 
